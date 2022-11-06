@@ -1,8 +1,9 @@
+import { Info } from 'components/MovieInfo.styled';
 import { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import { getMovieReviews } from '../components/API';
 
-const Reviews = () => {
+export default function Reviews() {
   const [reviewInfo, setReviewInfo] = useState([]);
   const location = useLocation();
   const movieId = location.state.movieId;
@@ -17,24 +18,23 @@ const Reviews = () => {
   return (
     <section>
       <div>
+        <hr></hr>
         {reviewInfo.length !== 0 ? (
           <ul>
             {reviewInfo.map(({ id, author, content }) => (
               <li key={id}>
-                <p>
+                <Info>
                   <b>{author}</b>
-                </p>
-                <p>{content}</p>
+                </Info>
+                <Info>{content}</Info>
                 <br />
               </li>
             ))}
           </ul>
         ) : (
-          <p>No reviews here ^_^</p>
+          <p>No reviews here </p>
         )}
       </div>
     </section>
   );
 };
-
-export default Reviews;

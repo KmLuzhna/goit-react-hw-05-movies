@@ -1,30 +1,16 @@
 
-// import PropTypes from 'prop-types';
-// import {
-//   FilmTitle,
-//   FilmDescriptionWrapper,
-//   FilmGener,
-// } from 'pages/MovieDetails.styled';
-// import MoviePoster from './MoviePoster';
-// import {
-//   DescriptionCategory,
-//   DescriptionWrapper,
-// } from './MovieDescription.styled';
-// import MovieAddictionalInfo from './MovieAddictionalInfo';
-// import { Suspense } from 'react';
-// import { Outlet } from 'react-router-dom';
+import PropTypes from 'prop-types';
+import { GenersList, GenersListItem, Info, MovieContainer, MovieInfoContainer } from './MovieInfo.styled';
 
-// import { Link } from "react-router-dom";
-
-export default function MovieDescription({ filmDetails, location, movieId })  {
+export default function MovieDescription({ movieDetails})  {
   const { poster_path, original_title, vote_average, overview, genres } =
-    filmDetails;
+    movieDetails;
   const voteAveragePercent = Math.floor(Number(vote_average) * 10);
 
   return (
     <>
       {' '}
-      <div>
+      <MovieContainer>
         <img
           src={
             poster_path
@@ -35,35 +21,30 @@ export default function MovieDescription({ filmDetails, location, movieId })  {
           width="300"
           height="450"
               />
-              <div>
+              <MovieInfoContainer>
                   <h1>{original_title}</h1>
                   <div>
-                      <h2>User rate</h2>
-                      <p>{` ${voteAveragePercent}%`}</p>
+                      <h2>User rate:</h2>
+                      <Info>{` ${voteAveragePercent}%`}</Info>
                   </div>
                   <div>
-                      <h2>Overview</h2>
-                      <p>{overview}</p>
+                      <h2>Overview:</h2>
+                      <Info>{overview}</Info>
                   </div>
                   <div>
-                      <h2>Geners</h2>
-                      <ul>
+                      <h2>Geners:</h2>
+                      <GenersList>
                           {genres.map(({ id, name }) => (
-                              <p key={id}>{name}</p>
+                              <GenersListItem key={id}>{name}</GenersListItem>
                           ))}
-                      </ul>
+                      </GenersList>
                   </div>
-        </div>
-      </div>
-      {/* <FilmDescriptionWrapper>
-        <Suspense fallback={null}>
-          <Outlet />
-        </Suspense>
-      </FilmDescriptionWrapper> */}
+        </MovieInfoContainer>
+      </MovieContainer>
     </>
   );
 };
 
-// MovieDescription.propTypes = {
-//   filmDetails: PropTypes.object.isRequired,
-// };
+MovieDescription.propTypes = {
+  movieDetails: PropTypes.object.isRequired,
+};

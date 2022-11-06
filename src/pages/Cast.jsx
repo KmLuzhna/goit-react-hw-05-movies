@@ -1,3 +1,4 @@
+import { CastItem, CastList } from 'components/Cast.styled';
 import { useEffect, useState } from 'react';
 // import { NavLink, useLocation, useParams } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
@@ -7,9 +8,7 @@ import { getMovieCast } from '../components/API';
 
 export default function MovieCast() {
   const [filmCast, setFilmCast] = useState([]);
-//   const location = useLocation();
   const { movieId } = useParams();
-//   const backLink = location.state?.from ?? '/react-homework-template';
 
   useEffect(() => {
     async function getCast() {
@@ -26,9 +25,9 @@ export default function MovieCast() {
   return (
     <main>
       <div>
-        <ul>
+        <CastList>
         {filmCast && filmCast.map(({ id, profile_path, name, character }) => (
-            <li key={id}>
+            <CastItem key={id}>
                 
                <img src={
                         profile_path
@@ -41,9 +40,9 @@ export default function MovieCast() {
                 />
                 <p>{name}</p>
                 <p>Character: {character}</p>
-            </li>
+            </CastItem>
         ))}
-    </ul>   
+    </CastList>   
 
       </div>
     </main>

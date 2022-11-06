@@ -2,11 +2,10 @@ import { useState, useEffect } from 'react';
 import { useSearchParams } from "react-router-dom";
 import MainFilmList from 'components/MovieList';
 import { getMoviesQuery } from '../components/API';
+import { ButtonSearch, Input } from 'components/Movie.styled';
 
 export default function Movies () {
-// const location = useLocation();
-    
-    // const [searchMovies, setSearchMovies] = useSearchParams();
+
     const [searchParams, setSearchParams] = useSearchParams();
     const [searchMovies, setSearchMovies] = useState([]);
     const [movieQuery, setMovieQuery] = useState('');
@@ -16,9 +15,10 @@ export default function Movies () {
 const handleSubmit  = e => {
     e.preventDefault();
     if (movieQuery === movieName) {
-      return alert('Enter new movie Title ^_^');
+      return alert('Please, enter movie name!');
     }
-    setSearchParams(movieQuery !== '' ? { query: movieQuery } : {});
+  setSearchParams(movieQuery !== '' ? { query: movieQuery } : {});
+  
   };
 
 useEffect(() => {
@@ -38,24 +38,16 @@ return (
     <>
     <h2>Search Movies</h2>
         <form  onSubmit={handleSubmit}>
-          <input
+          <Input
             type="text"
             value={movieQuery}
                 onChange={e => setMovieQuery(e.target.value)}
                 autoFocus
                 placeholder="Search movie"
           />
-          <button type="submit">Search</button>
-        </form>
-        {searchMovies.length === 0 ? (
-          <h3>Find Something </h3>
-        ) : (
-          <MainFilmList
-            movieList={searchMovies}
-            // location={location}
-            // page={'movies'}
-          />
-        )}
+          <ButtonSearch type="submit">Search</ButtonSearch>
+    </form>
+    <MainFilmList movieList={searchMovies}/>
     </>
 );
 };

@@ -1,17 +1,17 @@
 import { Outlet } from "react-router-dom";
 import React, { Suspense } from 'react';
-import { Container, Header, Logo, Link } from "./SharedLayout.styled";
+import { Container, Header,  Link } from "./SharedLayout.styled";
 
 export default function SharedLayout () {
   return (
     <Container>
       <Header>
-        <Logo>
+        {/* <Logo>
           <span role="img" aria-label="computer icon">
             💻
           </span>{" "}
           GoMerch Store
-        </Logo>
+        </Logo> */}
         <nav>
           <Link to="" end>
             Home

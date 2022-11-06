@@ -1,58 +1,55 @@
-// import Container from 'components/Container';
-// import MovieAddictionalInfo from 'components/MovieAddictionalInfo';
-// import MovieAddictionalInfo from 'components/MovieAddictionalInfo';
+import { AdditonalInfoItem, AdditonalInfoList, Link } from 'components/MovieList.styled';
 import { useEffect, useState } from 'react';
 import { NavLink, useLocation, useParams, Outlet } from 'react-router-dom';
 import { getMovieById } from '../components/API';
 import MovieDescription from '../components/MovieInfo';
-// import MovieCast from './Cast';
 
 export default function MovieDetails() {
-  const [filmDetails, setfilmDetails] = useState(null);
+  const [movieDetails, setMovieDetails] = useState(null);
   const location = useLocation();
   const { movieId } = useParams();
-  const backLink = location.state?.from ?? '/react-homework-template';
+  const backLink = location.state?.from ?? '/goit-react-hw-05-movies';
 
   useEffect(() => {
     async function getFilmDetails() {
       const film = await getMovieById(movieId);
-      setfilmDetails(film);
+      setMovieDetails(film);
     }
     getFilmDetails();
   }, [movieId]);
 
-  if (filmDetails === null) {
+  if (movieDetails === null) {
     return;
   }
 
   return (
     <main>
       <div>
-        <NavLink to={backLink}>⬅️ Go Back</NavLink>
+        <NavLink to={backLink}> Go Back </NavLink>
         <MovieDescription
-          filmDetails={filmDetails}
+          movieDetails={movieDetails}
           location={location}
           movieId={movieId}
         />
         <hr></hr>
       <h2>Additonal Information</h2>
-      <ul>
-        <li>
-          <NavLink
+      <AdditonalInfoList>
+        <AdditonalInfoItem>
+          <Link
             to='cast'
             state={{ ...location.state, movieId: movieId }}
           >
             Cast
-          </NavLink>
-        </li>
-        <li>
-          <NavLink to='reviews'
+          </Link>
+        </AdditonalInfoItem>
+        <AdditonalInfoItem>
+          <Link to='reviews'
             state={{ ...location.state, movieId: movieId }}
           >
             Reviews
-          </NavLink>
-        </li>
-          </ul>
+          </Link>
+        </AdditonalInfoItem>
+          </AdditonalInfoList>
           <Outlet />
         {/* <MovieAddictionalInfo location={location} movieId={movieId} /> */}
       </div>
