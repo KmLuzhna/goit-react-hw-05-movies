@@ -51,9 +51,18 @@ export const AdditonalInfoItem = styled.li`
     border-radius: 4px;
     width: 100px;
     margin-right: 20px;
+
+      &.active {
+    color: white;
+    background-color: orangered;
+  }
 `;
 
 export const Link = styled(NavLink)`
   text-decoration: none;
   color: black;
+
+  &.active {
+    color: orangered;
+  }
 `;

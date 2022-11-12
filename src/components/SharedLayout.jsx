@@ -6,14 +6,8 @@ export default function SharedLayout () {
   return (
     <Container>
       <Header>
-        {/* <Logo>
-          <span role="img" aria-label="computer icon">
-            💻
-          </span>{" "}
-          GoMerch Store
-        </Logo> */}
         <nav>
-          <Link to="" end>
+          <Link to="/" end>
             Home
           </Link>
           <Link to="movies">Movies</Link>

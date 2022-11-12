@@ -1,5 +1,6 @@
 import { AdditonalInfoItem, AdditonalInfoList, Link } from 'components/MovieList.styled';
 import { useEffect, useState } from 'react';
+import React, { Suspense } from 'react';
 import { NavLink, useLocation, useParams, Outlet } from 'react-router-dom';
 import { getMovieById } from '../components/API';
 import MovieDescription from '../components/MovieInfo';
@@ -8,7 +9,8 @@ export default function MovieDetails() {
   const [movieDetails, setMovieDetails] = useState(null);
   const location = useLocation();
   const { movieId } = useParams();
-  const backLink = location.state?.from ?? '/goit-react-hw-05-movies';
+  // const backLink = location.state?.from ?? '/goit-react-hw-05-movies';
+  const backLink = location.state?.from ?? '/movies';
 
   useEffect(() => {
     async function getFilmDetails() {
@@ -50,7 +52,9 @@ export default function MovieDetails() {
           </Link>
         </AdditonalInfoItem>
           </AdditonalInfoList>
+        <Suspense fallback={<h1>Loading...</h1>}>
           <Outlet />
+        </Suspense>
         {/* <MovieAddictionalInfo location={location} movieId={movieId} /> */}
       </div>
     </main>

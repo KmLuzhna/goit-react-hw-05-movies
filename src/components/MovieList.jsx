@@ -17,7 +17,7 @@ const MainFilmList = ({ movieList }) => {
               <Link
                     to={{
                         // pathname: `movies/${`${id}`}`,
-                      pathname: `/goit-react-hw-05-movies/movies/${`${id}`}`,
+                      pathname: `/movies/${`${id}`}`,
                         state: {
                         from: {
                             location,
